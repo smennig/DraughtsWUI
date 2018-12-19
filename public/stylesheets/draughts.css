@@ -1,0 +1,76 @@
+.boardcontainer {
+    height: 100%;
+    width: 100%;
+    margin: 1em;
+    display:flex;
+    font-size:40px;
+    font-family: "Verdana",Geneva, sans-serif;
+    font-weight: bold;
+}
+
+.board {
+    border-style: inset;
+    border-width: 0.05em;
+    border-spacing: 0;
+    padding: 0.05em;
+    margin:auto;
+    width: auto;
+}
+
+.clear {
+    clear:both;
+}
+
+.field {
+    display: inline-block;
+    float:left;
+    border-style: solid;
+    border-width: 0.05em;
+    width: 1.7em;
+    height: 1.7em;
+    text-align: center;
+    margin:auto;
+    position: relative;
+}
+
+.highlighted {
+    background-color:#C0FFC0;
+}
+
+.dim-black{
+    background-color: rgb(117, 117, 117);
+    border-color: rgb(117, 117, 117);
+}
+
+.dim-white{
+    background-color: rgb(230,230,230);
+    border-color: rgb(230,230,230);
+}
+
+.piece {
+    height: 80%;
+    width: 80%;
+    vertical-align: bottom;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.king-black{
+    background: url(../images/crown_white.png) no-repeat center;
+}
+
+.king-white{
+    background: url(../images/crown_black.png) no-repeat center;
+}
+
+.white{
+    background-color: #ffffff;
+}
+
+.black{
+    background-color: #000000;
+}

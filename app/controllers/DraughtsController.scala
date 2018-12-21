@@ -15,9 +15,9 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
   val board: Board = new BoardCreator(8).setupFields()
 
   //TODO make input dynamic
-  val playerOne = new Player(name= "Simon",color = Colour.BLACK, turn = true)
-  val playerTwo = new Player(name= "Tim",color = Colour.WHITE, turn = false)
-  val c: GameController = new MoveController(board,playerOne,playerTwo)
+  val playerOne = new Player(name = "Simon", color = Colour.BLACK, turn = true)
+  val playerTwo = new Player(name = "Tim", color = Colour.WHITE, turn = false)
+  var c: GameController = new MoveController(board, playerOne, playerTwo)
 
   /**
     * Create an Action to render an HTML page with a welcome message.
@@ -32,11 +32,16 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
 
   def move(oldCol: Int, oldRow: Int, newCol: Int, newRow: Int) = Action {
 
-    //FIXME switch col and row
     println(c.move(oldCol, oldRow, newCol, newRow))
     println((oldCol, oldRow, newCol, newRow))
     println(c.board)
     Ok(views.html.board_fragment(c))
+  }
+
+  def newGame() = Action {
+   val  b = new BoardCreator(8).setupFields()
+    c = new MoveController(b, playerOne, playerTwo)
+    Ok(views.html.board(c))
   }
 
 }

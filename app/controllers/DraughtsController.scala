@@ -44,4 +44,8 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
     Ok(views.html.board(c))
   }
 
+  def playerStatus()= Action{
+    Ok(views.html.player_status(c))
+  }
+
 }

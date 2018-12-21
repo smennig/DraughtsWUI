@@ -39,12 +39,19 @@ function getField(fieldElement, piece) {
   };
 }
 
+function updatePlayerStatus() {
+  fetch("/playerStatus").then(response => response.text())
+    .then(innerHtml => document.getElementById("turn-indicator").innerHTML = innerHtml)
+    .catch(e => console.log(e));
+}
+
 function move(oldCol, oldRow, newCol, newRow) {
-    fetch(`/move/${oldCol}/${oldRow}/${newCol}/${newRow}`)
-      .then(response => response.text())
-      .then(boardHtml => document.getElementById("content").innerHTML = boardHtml)
-      .then(() => registerOnClickListeners())
-      .catch(e => console.log(e));
+  fetch(`/move/${oldCol}/${oldRow}/${newCol}/${newRow}`)
+    .then(response => response.text())
+    .then(boardHtml => document.getElementById("content").innerHTML = boardHtml)
+    .then(() => registerOnClickListeners())
+    .then(() => updatePlayerStatus())
+    .catch(e => console.log(e));
 }
 
 function registerOnClickListeners() {

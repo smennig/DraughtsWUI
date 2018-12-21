@@ -1,14 +1,12 @@
 @import de.htwg.draughts.controller.GameController
-@import de.htwg.draughts.model.Colour
-@import de.htwg.draughts.model.Field
-@import de.htwg.draughts.model.King
-@import de.htwg.draughts.model.Man
 
 @(controller:GameController)
 
 @main("HTWG Draughts") {
-
+    <div id="turn-indicator">
+        @player_status(controller)
+    </div>
     <div class="boardcontainer" id="content">
-    @board_fragment(controller)
+        @board_fragment(controller)
     </div>
     }

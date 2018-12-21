@@ -1,0 +1,16 @@
+@import de.htwg.draughts.controller.GameController
+@import de.htwg.draughts.model.Player
+
+@(controller:GameController)
+
+@whitePlayer =@{controller.whitePlayer}
+@blackPlayer =@{controller.blackPlayer}
+
+@getTurn(player:Player)=@{
+    if(controller.colourTurn == player.color){
+        "ist dran!"
+    }
+}
+
+<p class="white">@whitePlayer.name @getTurn(whitePlayer)</p>
+<p class="black">@blackPlayer.name @getTurn(blackPlayer)</p>

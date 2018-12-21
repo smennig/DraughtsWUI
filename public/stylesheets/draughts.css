@@ -4,8 +4,6 @@
     margin: 1em;
     display:flex;
     font-size:40px;
-    font-family: "Verdana",Geneva, sans-serif;
-    font-weight: bold;
 }
 
 .board {
@@ -68,10 +66,29 @@
     background: url(../images/crown_black.png) no-repeat center;
 }
 
-.white{
+div.white{
     background-color: #ffffff;
 }
 
-.black{
+div.black{
     background-color: #000000;
+}
+
+p.white{
+    color: #ffffff;
+}
+
+p.black{
+    color: #000000;
+}
+
+#turn-indicator{
+    background-color: rgb(117, 117, 117);
+    height: 100%;
+    width: 100%;
+    margin: 1em;
+    text-align: center;
+    font-size:40px;
+    font-family: "Verdana",Geneva, sans-serif;
+    font-weight: bold;
 }

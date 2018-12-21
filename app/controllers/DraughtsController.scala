@@ -1,7 +1,7 @@
 package controllers
 
 import de.htwg.draughts.controller._
-import de.htwg.draughts.model.{Board, BoardCreator}
+import de.htwg.draughts.model.{Board, BoardCreator, Colour, Player}
 import javax.inject._
 import play.api.mvc._
 
@@ -13,7 +13,11 @@ import play.api.mvc._
 @Singleton
 class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   val board: Board = new BoardCreator(8).setupFields()
-  val c: GameController = new MoveController(board)
+
+  //TODO make input dynamic
+  val playerOne = new Player(name= "Simon",color = Colour.BLACK, turn = true)
+  val playerTwo = new Player(name= "Tim",color = Colour.WHITE, turn = false)
+  val c: GameController = new MoveController(board,playerOne,playerTwo)
 
   /**
     * Create an Action to render an HTML page with a welcome message.

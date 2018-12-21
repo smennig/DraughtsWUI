@@ -1,0 +1,42 @@
+@import de.htwg.draughts.controller.GameController
+@import de.htwg.draughts.model.{Colour, Field, King, Man}
+
+@(controller:GameController)
+
+@size= @{ controller.board.size }
+@fields = @{controller.board.fields}
+
+@getPieceColor(field:Field)=@{
+    var cssClass = ""
+    val black = "black"
+    val white = "white"
+    if(field.piece.get.getColour==Colour.BLACK ){cssClass =black}else {cssClass = white}
+    field.piece.get match{
+        case k : King => cssClass + " king-"+cssClass
+        case m : Man => cssClass
+    }
+}
+
+
+<div class="board">
+@for(rowIndex <- 0 until size) {
+    <div class="row">
+    @for(colIndex <- 0 until size) {
+
+        @if(fields(rowIndex)(colIndex).getColour == Colour.BLACK) {
+            <div class="field dim-black" data-col="@colIndex" data-row="@rowIndex">
+            @if(fields(rowIndex)(colIndex).hasPiece) {
+                <div class="piece @{
+                    getPieceColor(fields(rowIndex)(colIndex))
+                }"></div>
+            }
+            </div>
+
+        } else {
+            <div class="field dim-white">
+            </div>
+        }
+    }
+    </div>
+}
+</div>

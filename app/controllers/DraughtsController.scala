@@ -26,13 +26,13 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
 
-  def move(oldCol: Int, oldRow: Int, newRow: Int, newCol: Int) = Action {
+  def move(oldCol: Int, oldRow: Int, newCol: Int, newRow: Int) = Action {
 
     //FIXME switch col and row
-    println(c.move(oldRow, oldCol, newRow, newCol))
+    println(c.move(oldCol, oldRow, newCol, newRow))
     println((oldCol, oldRow, newCol, newRow))
     println(c.board)
-    Ok(views.html.board(c))
+    Ok(views.html.board_fragment(c))
   }
 
 }

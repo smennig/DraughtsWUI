@@ -34,7 +34,7 @@
 }
 
 .highlighted {
-    background-color:#C0FFC0;
+     border-color: red !important;
 }
 
 .dim-black{
@@ -46,6 +46,7 @@
     background-color: rgb(230,230,230);
     border-color: rgb(230,230,230);
 }
+
 
 .piece {
     height: 80%;

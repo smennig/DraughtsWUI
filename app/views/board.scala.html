@@ -22,16 +22,16 @@
 
 
 @main("HTWG Draughts") {
-    <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/draughts.css")' />
 
-    <div class="boardcontainer">
+    <div class="boardcontainer" id="content">
         <div class="board">
+
             @for(rowIndex <- 0 until size) {
                 <div class="row">
                 @for(colIndex <- 0 until size) {
 
                     @if(fields(rowIndex)(colIndex).getColour == Colour.BLACK) {
-                        <div class="field dim-black">
+                        <div class="field dim-black" data-col="@colIndex" data-row="@rowIndex">
                             @if(fields(rowIndex)(colIndex).hasPiece){
                                 <div class="piece @{getPieceColor(fields(rowIndex)(colIndex))}"></div>
                             }

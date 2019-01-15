@@ -1,0 +1,48 @@
+
+
+@import de.htwg.draughts.model.Player
+@import javafx.scene.effect.ColorInput
+@import de.htwg.draughts.model.Colour
+@()
+<!-- Add wrapping container
+       Add new game Button
+       Check for EMpty values
+-->
+
+
+@main("HTWG Draughts") {
+
+<div class="headline    ">
+    Willkommen bei Scala-Dame
+</div>
+<div class="grid-container">
+    <div>
+        <div class="grid-item">
+            <p>Spieler 1</p>
+        </div>
+        <div class="grid-item">
+            <label for="firstPlayerInput">Name:</label>
+            <input type="text" id="firstPlayerInput">
+        </div>
+        <div class="grid-item">
+            <button type="button" id="changeFirstPlayerColorButton" class="colorButton white"></button>
+        </div>
+
+    </div>
+    <div>
+        <div class="grid-item">
+            <p>Spieler 2</p>
+        </div>
+        <div class="grid-item">
+            <label for="secondPlayerInput">Name:</label>
+            <input type="text" id="secondPlayerInput">
+        </div>
+        <div class="grid-item">
+            <button type="button" id="changeSecondPlayerColorButton" class="colorButton black"></button>
+        </div>
+    </div>
+</div>
+<div class="pull-right">
+    <button type="submit" class="submitButton" id="submitPlayerSelection">Spiel starten</button>
+</div>
+}

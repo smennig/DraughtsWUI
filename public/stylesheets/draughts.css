@@ -5,6 +5,24 @@
     display:flex;
     font-size:40px;
 }
+.headline {
+    background-color: rgb(117, 117, 117);
+    font-size: 30px;
+    text-align: center;
+}
+
+.grid-container {
+    background-color: rgb(117, 117, 117);
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+
+.grid-item {
+    font-size: 20px;
+    margin-bottom: 10px; !important;
+    text-align: center;
+}
 
 .board {
     border-style: inset;
@@ -82,6 +100,14 @@ p.black{
     color: #000000;
 }
 
+button.white{
+    background-color: #ffffff;
+}
+
+button.black{
+    background-color: #000000;
+}
+
 #turn-indicator{
     background-color: rgb(117, 117, 117);
     height: 100%;
@@ -91,4 +117,19 @@ p.black{
     font-size:40px;
     font-family: "Verdana",Geneva, sans-serif;
     font-weight: bold;
+}
+
+.colorButton{
+    height: 60px;
+    width: 60px;
+}
+.submitButton{
+    background-color: lightskyblue;
+    height: 50px;
+    weight: 200px;
+}
+
+.pull-right {
+    margin-right: 5%;
+    float: right;
 }

@@ -39,6 +39,60 @@ function getField(fieldElement, piece) {
   };
 }
 
+window.addEventListener("DOMContentLoaded", function(event) {
+    //ToDo: Add to every Listener
+    var changeFirstPlayerColorButton = document.getElementById("changeFirstPlayerColorButton");
+    if(changeFirstPlayerColorButton)
+      changeFirstPlayerColorButton.addEventListener("click", changeButtonColor);
+
+    var changeSecondPlayerColorButton = document.getElementById("changeSecondPlayerColorButton");
+    if(changeSecondPlayerColorButton)
+        changeSecondPlayerColorButton.addEventListener("click", changeButtonColor);
+
+    var submitPlayerSelection = document.getElementById("submitPlayerSelection");
+    if(submitPlayerSelection)
+        submitPlayerSelection.addEventListener("click", startGame);
+
+    var restartGameButton = document.getElementById("restartGameButton");
+    if(restartGameButton)
+        restartGameButton.addEventListener("click", restartGame);
+});
+
+function changeButtonColor() {
+  if(document.getElementById("changeFirstPlayerColorButton").classList.contains('white')){
+    document.getElementById("changeFirstPlayerColorButton").classList.add('black');
+    document.getElementById("changeFirstPlayerColorButton").classList.remove('white');
+
+    document.getElementById("changeSecondPlayerColorButton").classList.add('white');
+    document.getElementById("changeSecondPlayerColorButton").classList.remove('black');
+  } else {
+    document.getElementById("changeFirstPlayerColorButton").classList.add('white');
+    document.getElementById("changeFirstPlayerColorButton").classList.remove('black');
+
+    document.getElementById("changeSecondPlayerColorButton").classList.add('black');
+    document.getElementById("changeSecondPlayerColorButton").classList.remove('white');
+  }
+}
+
+
+function startGame() {
+  var firstPlayerName = "";
+  var secondPlayerName = "";
+
+  if(document.getElementById("changeFirstPlayerColorButton").classList.contains('white')){
+    secondPlayerName = document.getElementById("firstPlayerInput").value;
+    firstPlayerName = document.getElementById("secondPlayerInput").value;
+  } else {
+    firstPlayerName = document.getElementById("firstPlayerInput").value;
+    secondPlayerName = document.getElementById("secondPlayerInput").value;
+  }
+  if(firstPlayerName === "" || secondPlayerName ===""){
+      alert("Bitte füllen sie alle Felder aus")
+  } else {
+      document.location.href = `/startGame/${firstPlayerName}/${secondPlayerName}`
+  }
+}
+
 function updatePlayerStatus() {
   fetch("/playerStatus").then(response => response.text())
     .then(innerHtml => document.getElementById("turn-indicator").innerHTML = innerHtml)
@@ -84,5 +138,9 @@ function registerOnClickListeners() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  registerOnClickListeners()
+  registerOnClickListeners();
 }, false);
+
+function restartGame() {
+    document.location.href='/playerSelection'
+}

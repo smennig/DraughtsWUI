@@ -26,7 +26,7 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
     * a path of `/`.
     */
   def index = Action {
-    Ok(views.html.board(c))
+    Ok(views.html.player_selection())
   }
 
 
@@ -36,6 +36,16 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
     println((oldCol, oldRow, newCol, newRow))
     println(c.board)
     Ok(views.html.board_fragment(c))
+  }
+
+
+  def startGame(firstPlayerName: String, secondPlayerName: String) = Action {
+    val createdPlayerOne = new Player(name = firstPlayerName, color = Colour.BLACK, turn = true)
+    val createdPlayerTwo = new Player(name = secondPlayerName, color = Colour.WHITE, turn = false)
+
+    val  b = new BoardCreator(8).setupFields()
+    c = new MoveController(b, createdPlayerOne, createdPlayerTwo)
+    Ok(views.html.board(c))
   }
 
   def newGame() = Action {
@@ -48,4 +58,9 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
     Ok(views.html.player_status(c))
   }
 
+  def selectPlayers()= Action{
+    Ok(views.html.player_selection())
+  }
+
+  //ToDo: Method here
 }

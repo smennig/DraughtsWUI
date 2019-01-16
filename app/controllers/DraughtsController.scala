@@ -1,6 +1,7 @@
 package controllers
 
-import de.htwg.draughts.controller._
+
+import de.htwg.draughts.controller.{GameController, MoveController}
 import de.htwg.draughts.model.{Board, BoardCreator, Colour, Player}
 import javax.inject._
 import play.api.mvc._
@@ -12,55 +13,37 @@ import play.api.mvc._
   */
 @Singleton
 class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
-  val board: Board = new BoardCreator(8).setupFields()
+  var c: GameController = _
 
-  //TODO make input dynamic
-  val playerOne = new Player(name = "Simon", color = Colour.BLACK, turn = true)
-  val playerTwo = new Player(name = "Tim", color = Colour.WHITE, turn = false)
-  var c: GameController = new MoveController(board, playerOne, playerTwo)
+  var winPlayer : Option[Player] = Option.empty
 
-  /**
-    * Create an Action to render an HTML page with a welcome message.
-    * The configuration in the `routes` file means that this method
-    * will be called when the application receives a `GET` request with
-    * a path of `/`.
-    */
+
   def index = Action {
     Ok(views.html.player_selection())
   }
 
-
   def move(oldCol: Int, oldRow: Int, newCol: Int, newRow: Int) = Action {
 
-    println(c.move(oldCol, oldRow, newCol, newRow))
-    println((oldCol, oldRow, newCol, newRow))
-    println(c.board)
+    val result=c.move(oldCol, oldRow, newCol, newRow)
+    winPlayer =result._2
     Ok(views.html.board_fragment(c))
   }
 
-
   def startGame(firstPlayerName: String, secondPlayerName: String) = Action {
-    val createdPlayerOne = new Player(name = firstPlayerName, color = Colour.BLACK, turn = true)
-    val createdPlayerTwo = new Player(name = secondPlayerName, color = Colour.WHITE, turn = false)
+    val  createdPlayerOne = new Player(name = firstPlayerName, color = Colour.BLACK, turn = true)
+    val  createdPlayerTwo = new Player(name = secondPlayerName, color = Colour.WHITE, turn = false)
 
     val  b = new BoardCreator(8).setupFields()
     c = new MoveController(b, createdPlayerOne, createdPlayerTwo)
     Ok(views.html.board(c))
   }
 
-  def newGame() = Action {
-   val  b = new BoardCreator(8).setupFields()
-    c = new MoveController(b, playerOne, playerTwo)
-    Ok(views.html.board(c))
-  }
-
   def playerStatus()= Action{
-    Ok(views.html.player_status(c))
+    Ok(views.html.player_status(c, winPlayer))
   }
 
   def selectPlayers()= Action{
     Ok(views.html.player_selection())
   }
 
-  //ToDo: Method here
 }

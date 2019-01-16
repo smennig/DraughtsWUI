@@ -8,8 +8,6 @@ GET        /                                            controllers.DraughtsCont
 
 GET        /move/:oldCol/:oldRow/:newCol/:newRow        controllers.DraughtsController.move(oldCol: Int,oldRow:Int,newCol:Int,newRow:Int)
 
-GET        /newGame         controllers.DraughtsController.newGame
-
 GET        /startGame/:firstPlayerName/:secondPlayerName controllers.DraughtsController.startGame(firstPlayerName: String, secondPlayerName: String)
 
 GET        /playerStatus                                controllers.DraughtsController.playerStatus

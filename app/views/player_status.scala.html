@@ -1,7 +1,7 @@
 @import de.htwg.draughts.controller.GameController
 @import de.htwg.draughts.model.Player
 
-@(controller:GameController)
+@(controller:GameController, winPlayer: Option[Player])
 
 @whitePlayer =@{controller.whitePlayer}
 @blackPlayer =@{controller.blackPlayer}
@@ -11,6 +11,13 @@
         "ist dran!"
     }
 }
+@gameEnd(playerToTest :Player)=@{
+    winPlayer match{
+        case Some(player) => player.color == playerToTest.color
+        case None => false
+    }
+}
 
-<p class="white">@whitePlayer.name @getTurn(whitePlayer)</p>
-<p class="black">@blackPlayer.name @getTurn(blackPlayer)</p>
+
+<p class="white" id="whitePlayer" data-win="@gameEnd(whitePlayer)" data-name="@whitePlayer.name">@whitePlayer.name @getTurn(whitePlayer)</p>
+<p class="black" id="blackPlayer" data-win="@gameEnd(blackPlayer)" data-name="@blackPlayer.name">@blackPlayer.name @getTurn(blackPlayer)</p>

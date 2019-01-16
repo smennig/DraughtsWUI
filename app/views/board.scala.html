@@ -7,7 +7,7 @@
         <button type="submit" class="submitButton" id="restartGameButton">Neues Spiel starten</button>
     </div>
     <div id="turn-indicator">
-        @player_status(controller)
+        @player_status(controller, Option.empty)
     </div>
     <div class="boardcontainer" id="content">
         @board_fragment(controller)

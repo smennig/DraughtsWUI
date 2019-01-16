@@ -96,7 +96,26 @@ function startGame() {
 function updatePlayerStatus() {
   fetch("/playerStatus").then(response => response.text())
     .then(innerHtml => document.getElementById("turn-indicator").innerHTML = innerHtml)
+    .then(()=>checkPlayerWin())
     .catch(e => console.log(e));
+}
+
+function playerWon(name) {
+  let ok =confirm(`${name} hat gewonnen! Das soll das Spiel neu gestartet werden?`);
+  if(ok){
+    restartGame()
+  }
+}
+
+function checkPlayerWin() {
+  let whitePlayer =document.getElementById("whitePlayer");
+  let blackPlayer =document.getElementById("blackPlayer");
+  if (whitePlayer.dataset.win === "true"){
+    playerWon(whitePlayer.dataset.name)
+  } else if (blackPlayer.dataset.win === "true"){
+    playerWon(blackPlayer.dataset.name)
+  }
+
 }
 
 function move(oldCol, oldRow, newCol, newRow) {

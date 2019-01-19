@@ -2,15 +2,11 @@ package controllers
 
 
 import de.htwg.draughts.controller.{GameController, MoveController}
-import de.htwg.draughts.model.{Board, BoardCreator, Colour, Player}
+import de.htwg.draughts.model.{BoardCreator, Colour, Player}
 import javax.inject._
 import play.api.mvc._
 
 
-/**
-  * This controller creates an `Action` to handle HTTP requests to the
-  * application's home page.
-  */
 @Singleton
 class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   var c: GameController = _
@@ -33,7 +29,7 @@ class DraughtsController @Inject()(cc: ControllerComponents) extends AbstractCon
     val  createdPlayerOne = new Player(name = firstPlayerName, color = Colour.BLACK, turn = true)
     val  createdPlayerTwo = new Player(name = secondPlayerName, color = Colour.WHITE, turn = false)
 
-    val  b = new BoardCreator(8).setupFields()
+    val  b = new BoardCreator(8).setupWinFields()
     c = new MoveController(b, createdPlayerOne, createdPlayerTwo)
     Ok(views.html.board(c))
   }
